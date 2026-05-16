@@ -69,15 +69,12 @@ async def echo_off(ctx):
         await ctx.send("현재 이 채널은 따라 하기 상태가 아닙니다.")
 
 
-
-
 @bot.command(name="추방")
 @commands.has_permissions(kick_members=True)
 async def kick_user(ctx, *, text=None):
     if text is None:
         await ctx.send("사용법: !추방 닉네임/아이디/@멘션")
         return
-
 
     target = await find_member(ctx, text)
 
@@ -113,18 +110,12 @@ async def kick_user(ctx, *, text=None):
     except:
         await ctx.send("추방할 수 없습니다. 봇 권한이나 역할 순서를 확인하세요.")
 
-
-
-
 @kick_user.error
 async def kick_user_error(ctx, error):
     if isinstance(error, commands.MissingPermissions):
         await ctx.send("이 명령어를 사용하려면 멤버 추방하기 권한이 필요합니다.")
     else:
         await ctx.send("명령어 오류입니다. 사용법: !추방 닉네임/아이디/@멘션")
-
-
-
 
 bot.run(TOKEN)
 
